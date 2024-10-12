@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import studentsData from "../data/students.json";
-import "../styles/StudentDashboard.css";
 
 const StudentDashboard = () => {
   const [student, setStudent] = useState(null);
@@ -12,32 +11,27 @@ const StudentDashboard = () => {
   if (!student) return <p>Loading...</p>;
 
   return (
-    <div className="student-dashboard">
-      <h1>Student Portal</h1>
-      <h2>Welcome, {student.name}</h2>
-      <img
-        src={student.image}
-        alt={`${student.name}'s profile`}
-        className="student-image"
-      />
-      <section>
-        <h3>Courses</h3>
+    <div className="container mx-auto p-4">
+      <h2 className="text-3xl font-bold">Student Portal</h2>
+      <h3 className="text-xl">Welcome, {student.name}</h3>
+      <div className="bg-white shadow-md rounded-lg p-4 mt-4">
+        <h4 className="text-lg font-semibold">Courses</h4>
         <ul>
           {student.courses.map((course) => (
-            <li key={course}>
+            <li key={course} className="border-b py-2">
               {course} - Grade: {student.grades[course]}
             </li>
           ))}
         </ul>
-      </section>
-      <section>
-        <h3>Upcoming Events</h3>
+        <h4 className="text-lg font-semibold mt-4">Upcoming Events</h4>
         <ul>
           {student.events.map((event) => (
-            <li key={event}>{event}</li>
+            <li key={event} className="border-b py-2">
+              {event}
+            </li>
           ))}
         </ul>
-      </section>
+      </div>
     </div>
   );
 };

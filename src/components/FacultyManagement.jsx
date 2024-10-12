@@ -1,6 +1,5 @@
 import { useState } from "react";
 import facultyData from "../data/faculty.json";
-import "../styles/FacultyManagement.css";
 
 const FacultyManagement = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -11,32 +10,41 @@ const FacultyManagement = () => {
   );
 
   return (
-    <div className="faculty-management">
-      <h1>Faculty Overview</h1>
+    <div className="container mx-auto p-4">
+      <h2 className="text-3xl font-bold py-5">Faculty Overview</h2>
       <input
         type="text"
         placeholder="Search faculty..."
-        value={searchTerm}
+        className="border border-gray-300 rounded p-2 w-full"
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <ul>
+      <ul className="mt-4">
         {filteredFaculty.map((faculty) => (
-          <li key={faculty.id} onClick={() => setSelectedFaculty(faculty)}>
-            <img
-              src={faculty.image}
-              alt={faculty.name}
-              className="faculty-image"
-            />
-            <h3>
-              {faculty.name} - {faculty.designation}
-            </h3>
-            {selectedFaculty && selectedFaculty.id === faculty.id && (
-              <div className="faculty-details">
+          <li
+            key={faculty.id}
+            className="flex justify-between items-center p-4 bg-white shadow-md rounded-lg my-2"
+          >
+            <div>
+              <h3 className="font-semibold">{faculty.name}</h3>
+              <p>{faculty.designation}</p>
+            </div>
+
+            {selectedFaculty === faculty && (
+              <div className="mt-2">
                 <p>Subjects: {faculty.subjects.join(", ")}</p>
                 <p>Office Hours: {faculty.officeHours}</p>
                 <p>Contact: {faculty.contact}</p>
               </div>
             )}
+            <button
+              onClick={() =>
+                setSelectedFaculty(selectedFaculty === faculty ? null : faculty)
+              }
+              // className="bg-blue-800 hover:bg-blue-700 text-white rounded px-4 py-2"
+              className="bg-yellow-500 hover:bg-yellow-400 text-white rounded px-4 py-2"
+            >
+              Details
+            </button>
           </li>
         ))}
       </ul>
