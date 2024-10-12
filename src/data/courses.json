@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "Course 1",
+    "professor": "Dr. Jane Smith",
+    "schedule": "Mon & Wed 10 AM - 11:30 AM",
+    "image": "/images/courses/course1.jpg"
+  }
+]

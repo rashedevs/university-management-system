@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "courses": ["Course1", "Course2"],
+    "grades": { "Course1": "A", "Course2": "B" },
+    "events": ["Orientation", "Exam Week"],
+    "image": "/images/students/john-doe.jpg"
+  }
+]

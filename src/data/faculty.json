@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Jane Smith",
+    "designation": "Professor",
+    "subjects": ["Math", "Physics"],
+    "officeHours": "10 AM - 12 PM",
+    "contact": "jane.smith@university.edu",
+    "image": "/images/faculty/jane-smith.jpg"
+  }
+]
