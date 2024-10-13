@@ -12,21 +12,21 @@ const StudentDashboard = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h2 className="text-3xl font-bold">Student Portal</h2>
+      <h2 className="text-3xl font-bold py-2">Student Portal</h2>
       <h3 className="text-xl">Welcome, {student.name}</h3>
       <div className="bg-white shadow-md rounded-lg p-4 mt-4">
         <h4 className="text-lg font-semibold">Courses</h4>
         <ul>
           {student.courses.map((course) => (
-            <li key={course} className="border-b py-2">
-              {course} - Grade: {student.grades[course]}
+            <li key={course.courseName} className="border-b py-2">
+              {course.courseName} - Grade: {course.grade}
             </li>
           ))}
         </ul>
         <h4 className="text-lg font-semibold mt-4">Upcoming Events</h4>
         <ul>
-          {student.events.map((event) => (
-            <li key={event} className="border-b py-2">
+          {student.upcomingEvents.map((event, index) => (
+            <li key={index} className="border-b py-2">
               {event}
             </li>
           ))}

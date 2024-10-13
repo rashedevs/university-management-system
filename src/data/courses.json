@@ -1,9 +1,72 @@
 [
   {
     "id": 1,
-    "name": "Course 1",
+    "name": "Introduction to Programming",
     "professor": "Dr. Jane Smith",
     "schedule": "Mon & Wed 10 AM - 11:30 AM",
-    "image": "/images/courses/course1.jpg"
+    "image": "/images/courses/programming.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Introduction to Computer Science",
+    "professor": "Dr. John Doe",
+    "schedule": "Tue & Thu 9 AM - 10:30 AM",
+    "image": "/images/courses/computer_science.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Fundamentals of Psychology",
+    "professor": "Dr. Emily Green",
+    "schedule": "Mon & Wed 11 AM - 12:30 PM",
+    "image": "/images/courses/psychology.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Linear Algebra",
+    "professor": "Dr. Michael Lee",
+    "schedule": "Mon & Wed 2 PM - 3:30 PM",
+    "image": "/images/courses/linear_algebra.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Organic Chemistry",
+    "professor": "Dr. Lisa White",
+    "schedule": "Tue & Thu 1 PM - 2:30 PM",
+    "image": "/images/courses/organic_chemistry.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Introduction to Philosophy",
+    "professor": "Dr. Sarah Brown",
+    "schedule": "Fri 10 AM - 12 PM",
+    "image": "/images/courses/philosophy.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Macroeconomics",
+    "professor": "Dr. Robert Black",
+    "schedule": "Tue & Thu 3 PM - 4:30 PM",
+    "image": "/images/courses/macroeconomics.jpg"
+  },
+  {
+    "id": 8,
+    "name": "World History",
+    "professor": "Dr. Katherine Davis",
+    "schedule": "Mon & Wed 1 PM - 2:30 PM",
+    "image": "/images/courses/world_history.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Digital Marketing",
+    "professor": "Dr. William Taylor",
+    "schedule": "Fri 9 AM - 11 AM",
+    "image": "/images/courses/digital_marketing.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Data Structures and Algorithms",
+    "professor": "Dr. Laura Wilson",
+    "schedule": "Tue & Thu 10 AM - 11:30 AM",
+    "image": "/images/courses/data_structures.jpg"
   }
 ]

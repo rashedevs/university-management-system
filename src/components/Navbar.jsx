@@ -62,7 +62,7 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-300 transition duration-300"
+                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-500 transition duration-300"
                   : "text-white hover:bg-slate-600 px-2 py-1 rounded"
               }
             >
@@ -72,7 +72,7 @@ const Navbar = () => {
               to="/faculty"
               className={({ isActive }) =>
                 isActive
-                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-300 transition duration-300"
+                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-500 transition duration-300"
                   : "text-white hover:bg-slate-600 px-2 py-1 rounded"
               }
             >
@@ -82,7 +82,7 @@ const Navbar = () => {
               to="/register"
               className={({ isActive }) =>
                 isActive
-                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-300 transition duration-300"
+                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-500 transition duration-300"
                   : "text-white hover:bg-slate-600 px-2 py-1 rounded"
               }
             >

@@ -3,9 +3,90 @@
     "id": 1,
     "name": "Dr. Jane Smith",
     "designation": "Professor",
-    "subjects": ["Math", "Physics"],
-    "officeHours": "10 AM - 12 PM",
+    "subjects": ["Introduction to Programming", "Physics"],
+    "officeHours": "Mon & Wed 10 AM - 12 PM",
     "contact": "jane.smith@university.edu",
     "image": "/images/faculty/jane-smith.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Michael Lee",
+    "designation": "Professor",
+    "subjects": ["Linear Algebra", "Calculus"],
+    "officeHours": "Tue & Thu 2 PM - 4 PM",
+    "contact": "michael.lee@university.edu",
+    "image": "/images/faculty/michael-lee.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Robert Black",
+    "designation": "Professor",
+    "subjects": ["Macroeconomics", "Microeconomics"],
+    "officeHours": "Tue & Thu 9 AM - 11 AM",
+    "contact": "robert.black@university.edu",
+    "image": "/images/faculty/robert-black.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Dr. Laura Wilson",
+    "designation": "Professor",
+    "subjects": ["Data Structures and Algorithms", "Software Engineering"],
+    "officeHours": "Tue & Thu 12 PM - 2 PM",
+    "contact": "laura.wilson@university.edu",
+    "image": "/images/faculty/laura-wilson.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Dr. Emily Green",
+    "designation": "Assistant Professor",
+    "subjects": ["Fundamentals of Psychology", "Behavioral Science"],
+    "officeHours": "Mon & Wed 1 PM - 3 PM",
+    "contact": "emily.green@university.edu",
+    "image": "/images/faculty/emily-green.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Dr. Sarah Brown",
+    "designation": "Assistant Professor",
+    "subjects": ["Introduction to Philosophy", "Ethics"],
+    "officeHours": "Fri 1 PM - 3 PM",
+    "contact": "sarah.brown@university.edu",
+    "image": "/images/faculty/sarah-brown.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Dr. William Taylor",
+    "designation": "Assistant Professor",
+    "subjects": ["Digital Marketing", "Marketing Strategy"],
+    "officeHours": "Fri 11 AM - 1 PM",
+    "contact": "william.taylor@university.edu",
+    "image": "/images/faculty/william-taylor.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Dr. John Doe",
+    "designation": "Associate Professor",
+    "subjects": ["Introduction to Computer Science", "Artificial Intelligence"],
+    "officeHours": "Tue & Thu 11 AM - 1 PM",
+    "contact": "john.doe@university.edu",
+    "image": "/images/faculty/john-doe.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Dr. Lisa White",
+    "designation": "Associate Professor",
+    "subjects": ["Organic Chemistry", "Biochemistry"],
+    "officeHours": "Mon & Wed 12 PM - 2 PM",
+    "contact": "lisa.white@university.edu",
+    "image": "/images/faculty/lisa-white.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Dr. Katherine Davis",
+    "designation": "Associate Professor",
+    "subjects": ["World History", "Modern History"],
+    "officeHours": "Mon & Wed 2 PM - 4 PM",
+    "contact": "katherine.davis@university.edu",
+    "image": "/images/faculty/katherine-davis.jpg"
   }
 ]
