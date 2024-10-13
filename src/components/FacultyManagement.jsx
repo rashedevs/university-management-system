@@ -1,16 +1,14 @@
 import { useState } from "react";
 import facultyData from "../data/faculty.json";
 import Dropdown from "./reusable/Dropdown";
+import FacultyCard from "./reusable/FacultyCard";
 
 const FacultyManagement = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [selectedOption, setSelectedOption] = useState({
     label: "CSE",
     value: "cse",
   });
-
-  console.log("dept", selectedOption);
 
   const dropdownOptions = [
     { label: "CSE", value: "cse" },
@@ -26,12 +24,19 @@ const FacultyManagement = () => {
   const itemsPerPage = 3;
 
   // Filter faculty based on search term
-  const filteredFaculty = facultyData.filter((faculty) =>
-    faculty.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredFaculty = facultyData.filter(
+    (faculty) =>
+      faculty.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      faculty.department == selectedOption.label
   );
 
   // Calculate total pages
   const totalPages = Math.ceil(filteredFaculty.length / itemsPerPage);
+
+  const handleDetailsClick = (faculty) => {
+    // Handle the click event, e.g., redirecting to a details page or showing a modal
+    console.log("Show details for:", faculty);
+  };
 
   // Get current faculty items for the page
   const currentFaculty = filteredFaculty.slice(
@@ -40,7 +45,7 @@ const FacultyManagement = () => {
   );
   // text-[#88FF00]
   return (
-    <div className="flex flex-col bg-gray-100">
+    <div className="flex flex-col bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4 flex-grow overflow-y-auto">
         {/* <h2 className="text-3xl font-bold py-5">Faculty Overview</h2> */}
         <div className="py-4 mb-3 border-2 bg-green-500 rounded-sm text-center">
@@ -70,60 +75,25 @@ const FacultyManagement = () => {
         </div>
 
         <div className="mt-4">
-          {currentFaculty.map((faculty) => (
-            <div key={faculty.id}>
-              <h2 id={`accordion-open-heading-${faculty.id}`}>
-                <button
-                  type="button"
-                  className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 rounded-t-xl hover:bg-gray-100 gap-3"
-                  onClick={() =>
-                    setSelectedFaculty(
-                      selectedFaculty === faculty ? null : faculty
-                    )
-                  }
-                  aria-expanded={selectedFaculty === faculty}
-                  aria-controls={`accordion-open-body-${faculty.id}`}
-                >
-                  <span>
-                    <span className="flex items-center">{faculty.name}</span>
-                    <span className="flex items-center">
-                      {faculty.designation}
-                    </span>
-                  </span>
-                  <svg
-                    className={`w-3 h-3 transition-transform duration-200 ${
-                      selectedFaculty === faculty ? "" : "rotate-180"
-                    }`}
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 10 6"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 5 5 1 1 5"
-                    />
-                  </svg>
-                </button>
-              </h2>
-              <div
-                id={`accordion-open-body-${faculty.id}`}
-                className={`border border-b-0 border-gray-200 ${
-                  selectedFaculty === faculty ? "block" : "hidden"
-                }`}
-                aria-labelledby={`accordion-open-heading-${faculty.id}`}
-              >
-                <div className="p-5">
-                  <p>Subjects: {faculty.subjects.join(", ")}</p>
-                  <p>Office Hours: {faculty.officeHours}</p>
-                  <p>Contact: {faculty.contact}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+          {currentFaculty.length ? (
+            currentFaculty.map((faculty) => (
+              <FacultyCard
+                key={faculty.id}
+                name={faculty.name}
+                designation={faculty.designation}
+                education={faculty.education}
+                department={faculty.department}
+                email={faculty.email}
+                research={faculty.research}
+                imageUrl={faculty.image}
+                onDetailsClick={() => handleDetailsClick(faculty)}
+              />
+            ))
+          ) : (
+            <h4 className="text-center text-red-600 mt-5">
+              No Faculty Data Found
+            </h4>
+          )}
         </div>
       </div>
 
