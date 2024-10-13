@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="bg-slate-700 p-4">
+      <nav className="bg-green-600 p-4">
         <div className="container mx-auto flex justify-between items-center">
           {/* Website title */}
           {/* <h1 className="text-white text-xl font-bold">
@@ -62,8 +62,8 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-500 transition duration-300"
-                  : "text-white hover:bg-slate-600 px-2 py-1 rounded"
+                  ? "text-[#88FF00] px-2 py-1 rounded border-b-2 border-[#88FF00] transition duration-300"
+                  : "text-white hover:text-[#88FF00] px-2 py-1 rounded ease-in-out duration-300"
               }
             >
               Student Dashboard
@@ -72,8 +72,8 @@ const Navbar = () => {
               to="/faculty"
               className={({ isActive }) =>
                 isActive
-                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-500 transition duration-300"
-                  : "text-white hover:bg-slate-600 px-2 py-1 rounded"
+                  ? "text-[#88FF00]  px-2 py-1 rounded border-b-2 border-[#88FF00] transition duration-300"
+                  : "text-white hover:text-[#88FF00] px-2 py-1 rounded"
               }
             >
               Faculty Management
@@ -82,8 +82,8 @@ const Navbar = () => {
               to="/register"
               className={({ isActive }) =>
                 isActive
-                  ? "text-slate-300 hover:bg-slate-600 px-2 py-1 rounded border-b-2 border-slate-500 transition duration-300"
-                  : "text-white hover:bg-slate-600 px-2 py-1 rounded"
+                  ? "text-[#88FF00]  px-2 py-1 rounded border-b-2 border-[#88FF00] transition duration-300"
+                  : "text-white hover:text-[#88FF00] px-2 py-1 rounded"
               }
             >
               Course Registration
