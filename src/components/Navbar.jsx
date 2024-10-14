@@ -62,8 +62,8 @@ const Navbar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? "text-[#88FF00] px-2 py-1 rounded border-b-2 border-[#88FF00] transition duration-300"
-                  : "text-white hover:text-[#88FF00] px-2 py-1 rounded ease-in-out duration-300"
+                  ? "text-[#88FF00] mx-2 py-1 border-b-2 border-[#88FF00] transition duration-300"
+                  : "text-white hover:text-[#88FF00] px-2 py-1 rounded"
               }
             >
               Student Dashboard
@@ -72,7 +72,7 @@ const Navbar = () => {
               to="/faculty"
               className={({ isActive }) =>
                 isActive
-                  ? "text-[#88FF00]  px-2 py-1 rounded border-b-2 border-[#88FF00] transition duration-300"
+                  ? "text-[#88FF00] mx-2 py-1 border-b-2 border-[#88FF00] transition duration-300"
                   : "text-white hover:text-[#88FF00] px-2 py-1 rounded"
               }
             >
@@ -82,7 +82,7 @@ const Navbar = () => {
               to="/register"
               className={({ isActive }) =>
                 isActive
-                  ? "text-[#88FF00]  px-2 py-1 rounded border-b-2 border-[#88FF00] transition duration-300"
+                  ? "text-[#88FF00] mx-2 py-1 border-b-2 border-[#88FF00] transition duration-300"
                   : "text-white hover:text-[#88FF00] px-2 py-1 rounded"
               }
             >

@@ -55,8 +55,8 @@ const FacultyManagement = () => {
     <div className="flex flex-col bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4 flex-grow overflow-y-auto">
         {/* <h2 className="text-3xl font-bold py-5">Faculty Overview</h2> */}
-        <div className="py-4 mb-3 border-2 bg-green-500 rounded-sm text-center">
-          <h1 className="ms-2 p-2 text-3xl font-normal text-[#88FF00] dark:text-gray-400">
+        <div className="py-4 mb-3 border-2 bg-green-500 rounded-lg text-center">
+          <h1 className="ms-2 p-2 text-3xl font-bold text-white dark:text-gray-400">
             {selectedOption?.value == "cse" &&
               "Department of Computer Science & Engineering"}
             {selectedOption?.value == "eee" &&
@@ -71,7 +71,7 @@ const FacultyManagement = () => {
           <input
             type="text"
             placeholder="Search faculty..."
-            className="border border-gray-300 rounded p-2 w-full mr-2"
+            className="border border-green-300 rounded-lg p-2 w-full mr-2 focus:border-0 focus:outline-none focus:ring-green-300"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <Dropdown
