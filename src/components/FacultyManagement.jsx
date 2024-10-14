@@ -2,13 +2,16 @@ import { useState } from "react";
 import facultyData from "../data/faculty.json";
 import Dropdown from "./reusable/Dropdown";
 import FacultyCard from "./reusable/FacultyCard";
+import Modal from "./reusable/Modal";
 
 const FacultyManagement = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedFaculty, setSelectedFaculty] = useState(null);
   const [selectedOption, setSelectedOption] = useState({
     label: "CSE",
     value: "cse",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dropdownOptions = [
     { label: "CSE", value: "cse" },
@@ -33,17 +36,21 @@ const FacultyManagement = () => {
   // Calculate total pages
   const totalPages = Math.ceil(filteredFaculty.length / itemsPerPage);
 
-  const handleDetailsClick = (faculty) => {
-    // Handle the click event, e.g., redirecting to a details page or showing a modal
-    console.log("Show details for:", faculty);
-  };
-
   // Get current faculty items for the page
   const currentFaculty = filteredFaculty.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-  // text-[#88FF00]
+
+  const handleDetailsClick = (faculty) => {
+    setSelectedFaculty(faculty); // Pass the selected faculty to modal
+    setIsModalOpen(true); // Open the modal
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+    setSelectedFaculty(null); // Reset selected faculty
+  };
   return (
     <div className="flex flex-col bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4 flex-grow overflow-y-auto">
@@ -95,6 +102,14 @@ const FacultyManagement = () => {
             </h4>
           )}
         </div>
+        {/* Render Modal */}
+        {isModalOpen && selectedFaculty && (
+          <Modal
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            faculty={selectedFaculty}
+          />
+        )}
       </div>
 
       {/* Pagination */}
