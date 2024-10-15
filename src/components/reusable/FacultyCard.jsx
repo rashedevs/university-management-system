@@ -36,7 +36,7 @@ const FacultyCard = ({
       <div className="flex items-center justify-center md:ml-auto md:mr-4">
         <button
           onClick={onDetailsClick}
-          className="px-4 m-5 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:ring-1 focus:outline-none"
+          className="px-4 m-5 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:ring-1 focus:outline-none"
         >
           Details
         </button>
