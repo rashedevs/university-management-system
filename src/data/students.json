@@ -11,34 +11,6 @@
       { "courseName": "Data Structures", "grade": "B+" }
     ],
     "upcomingEvents": ["Hackathon - October 27", "Midterm Exam - November 15"],
-    "image": "/images/students/alice-johnson.jpg"
-  },
-  {
-    "id": 2,
-    "name": "David Brown",
-    "major": "Economics",
-    "year": "Senior",
-    "contact": "david.brown@university.edu",
-    "gpa": 3.6,
-    "courses": [
-      { "courseName": "Macroeconomics", "grade": "A-" },
-      { "courseName": "Financial Analysis", "grade": "B" }
-    ],
-    "upcomingEvents": ["Graduation Ceremony - November 1"],
-    "image": "/images/students/david-brown.jpg"
-  },
-  {
-    "id": 3,
-    "name": "Sophia Wilson",
-    "major": "Psychology",
-    "year": "Junior",
-    "contact": "sophia.wilson@university.edu",
-    "gpa": 3.9,
-    "courses": [
-      { "courseName": "Behavioral Psychology", "grade": "A" },
-      { "courseName": "Cognitive Psychology", "grade": "A-" }
-    ],
-    "upcomingEvents": ["Research Conference - November 25"],
-    "image": "/images/students/sophia-wilson.jpg"
+    "image": "/images/avatar.png"
   }
 ]

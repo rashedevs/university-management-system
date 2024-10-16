@@ -64,7 +64,7 @@ const CourseRegistration = () => {
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto p-4">
-        <h2 className="text-3xl mt-3 mb-5 font-bold">Enroll in Courses</h2>
+        <h2 className="text-3xl mt-3 mb-5 font-bold">Courses to enroll</h2>
 
         <div className="flex items-center justify-between mb-4">
           <input
@@ -87,7 +87,7 @@ const CourseRegistration = () => {
           {currentCourses.length > 0 ? (
             currentCourses.map((course) => (
               <div
-                className="lg:h-66 md:h-72 h-72 flex flex-col justify-between max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+                className="lg:h-66 md:h-72 h-72 bg-white flex flex-col justify-between max-w-sm p-6 border border-gray-200 rounded-lg shadow"
                 key={course.courseId}
               >
                 <div>
