@@ -64,7 +64,7 @@ const CourseRegistration = () => {
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto p-4">
-        <h2 className="text-3xl mt-3 mb-5 font-bold">Courses to enroll</h2>
+        <h2 className="text-3xl mt-3 mb-5 font-bold">Enroll in Courses</h2>
 
         <div className="flex items-center justify-between mb-4">
           <input

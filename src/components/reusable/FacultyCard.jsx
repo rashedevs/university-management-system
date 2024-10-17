@@ -7,6 +7,7 @@ const FacultyCard = ({
   department,
   email,
   research,
+  subjects,
   imageUrl,
   onDetailsClick,
 }) => {
@@ -29,6 +30,9 @@ const FacultyCard = ({
           Education: {education}
         </p>
         <p className="mb-1 font-medium text-gray-700 dark:text-gray-400">
+          Subjects: {subjects}
+        </p>
+        <p className="mb-1 font-medium text-gray-700 dark:text-gray-400">
           Department: {department}
         </p>
       </div>
@@ -38,7 +42,7 @@ const FacultyCard = ({
           onClick={onDetailsClick}
           className="px-4 m-5 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:ring-1 focus:outline-none"
         >
-          Details
+          More
         </button>
       </div>
     </div>

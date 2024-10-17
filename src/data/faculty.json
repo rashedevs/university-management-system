@@ -7,7 +7,7 @@
     "department": "CSE",
     "email": "jane.smith@university.edu",
     "research": "Artificial Intelligence, Machine Learning",
-    "subjects": ["Introduction to Programming", "Data Structures"],
+    "subjects": "Introduction to Programming, Data Structures",
     "officeHours": "Mon & Wed 10 AM - 12 PM",
     "contact": "jane.smith@university.edu",
     "image": "/images/male3.png"
@@ -20,7 +20,7 @@
     "department": "CSE",
     "email": "michael.lee@university.edu",
     "research": "Numerical Analysis, Algebra",
-    "subjects": ["Linear Algebra", "Calculus"],
+    "subjects": "Linear Algebra, Calculus",
     "officeHours": "Tue & Thu 2 PM - 4 PM",
     "contact": "michael.lee@university.edu",
     "image": "/images/male1.png"
@@ -33,7 +33,7 @@
     "department": "CSE",
     "email": "robert.black@university.edu",
     "research": "Software Development, Web Technologies",
-    "subjects": ["Web Development", "Mobile App Development"],
+    "subjects": "Web Development, Mobile App Development",
     "officeHours": "Tue & Thu 9 AM - 11 AM",
     "contact": "robert.black@university.edu",
     "image": "/images/male2.png"
@@ -46,7 +46,7 @@
     "department": "CSE",
     "email": "laura.wilson@university.edu",
     "research": "Artificial Intelligence, Data Mining",
-    "subjects": ["Data Mining", "Machine Learning"],
+    "subjects": "Data Mining, Machine Learning",
     "officeHours": "Mon & Wed 1 PM - 3 PM",
     "contact": "laura.wilson@university.edu",
     "image": "/images/female3.png"
@@ -59,7 +59,7 @@
     "department": "CSE",
     "email": "emily.green@university.edu",
     "research": "Cybersecurity, Network Security",
-    "subjects": ["Computer Networks", "Cybersecurity"],
+    "subjects": "Computer Networks, Cybersecurity",
     "officeHours": "Fri 2 PM - 4 PM",
     "contact": "emily.green@university.edu",
     "image": "/images/female2.png"
@@ -72,7 +72,7 @@
     "department": "CSE",
     "email": "sarah.brown@university.edu",
     "research": "Agile Development, Software Testing",
-    "subjects": ["Software Engineering", "Project Management"],
+    "subjects": "Software Engineering, Project Management",
     "officeHours": "Fri 1 PM - 3 PM",
     "contact": "sarah.brown@university.edu",
     "image": "/images/female3.png"
@@ -85,7 +85,7 @@
     "department": "EEE",
     "email": "henry.wilson@university.edu",
     "research": "Renewable Energy, Power Systems",
-    "subjects": ["Power Systems", "Renewable Energy"],
+    "subjects": "Power Systems, Renewable Energy",
     "officeHours": "Mon & Wed 10 AM - 12 PM",
     "contact": "henry.wilson@university.edu",
     "image": "/images/male4.png"
@@ -98,7 +98,7 @@
     "department": "EEE",
     "email": "lisa.thompson@university.edu",
     "research": "Embedded Systems, IoT",
-    "subjects": ["Embedded Systems", "Microcontrollers"],
+    "subjects": "Embedded Systems, Microcontrollers",
     "officeHours": "Tue & Thu 2 PM - 4 PM",
     "contact": "lisa.thompson@university.edu",
     "image": "/images/female2.png"
@@ -111,7 +111,7 @@
     "department": "EEE",
     "email": "michael.johnson@university.edu",
     "research": "Signal Processing, Telecommunications",
-    "subjects": ["Signal Processing", "Communication Systems"],
+    "subjects": "Signal Processing, Communication Systems",
     "officeHours": "Mon & Wed 1 PM - 3 PM",
     "contact": "michael.johnson@university.edu",
     "image": "/images/male5.png"
@@ -124,7 +124,7 @@
     "department": "EEE",
     "email": "richard.brown@university.edu",
     "research": "Control Systems, Robotics",
-    "subjects": ["Control Systems", "Automation"],
+    "subjects": "Control Systems, Automation",
     "officeHours": "Tue & Thu 9 AM - 11 AM",
     "contact": "richard.brown@university.edu",
     "image": "/images/male6.png"
@@ -137,7 +137,7 @@
     "department": "EEE",
     "email": "emily.green@university.edu",
     "research": "Energy Efficiency, Smart Grids",
-    "subjects": ["Smart Grids", "Energy Management"],
+    "subjects": "Smart Grids, Energy Management",
     "officeHours": "Fri 2 PM - 4 PM",
     "contact": "emily.green@university.edu",
     "image": "/images/female3.png"
@@ -150,7 +150,7 @@
     "department": "EEE",
     "email": "matthew.white@university.edu",
     "research": "Power Electronics, Electric Drives",
-    "subjects": ["Power Electronics", "Electric Drives"],
+    "subjects": "Power Electronics, Electric Drives",
     "officeHours": "Mon & Wed 3 PM - 5 PM",
     "contact": "matthew.white@university.edu",
     "image": "/images/male2.png"
@@ -163,7 +163,7 @@
     "department": "ME",
     "email": "julia.taylor@university.edu",
     "research": "Thermodynamics, Fluid Mechanics",
-    "subjects": ["Thermodynamics", "Fluid Mechanics"],
+    "subjects": "Thermodynamics, Fluid Mechanics",
     "officeHours": "Mon & Wed 10 AM - 12 PM",
     "contact": "julia.taylor@university.edu",
     "image": "/images/female1.png"
@@ -176,7 +176,7 @@
     "department": "ME",
     "email": "alex.smith@university.edu",
     "research": "Manufacturing Processes, Robotics",
-    "subjects": ["Manufacturing Processes", "Robotics"],
+    "subjects": "Manufacturing Processes, Robotics",
     "officeHours": "Tue & Thu 2 PM - 4 PM",
     "contact": "alex.smith@university.edu",
     "image": "/images/male3.png"
@@ -189,7 +189,7 @@
     "department": "ME",
     "email": "nancy.williams@university.edu",
     "research": "Material Science, Composite Materials",
-    "subjects": ["Material Science", "Manufacturing"],
+    "subjects": "Material Science, Manufacturing",
     "officeHours": "Mon & Wed 1 PM - 3 PM",
     "contact": "nancy.williams@university.edu",
     "image": "/images/female2.png"
@@ -202,7 +202,7 @@
     "department": "ME",
     "email": "steven.hall@university.edu",
     "research": "Thermal Systems, HVAC",
-    "subjects": ["Thermal Systems", "HVAC"],
+    "subjects": "Thermal Systems, HVAC",
     "officeHours": "Tue & Thu 9 AM - 11 AM",
     "contact": "steven.hall@university.edu",
     "image": "/images/male4.png"
@@ -215,7 +215,7 @@
     "department": "ME",
     "email": "patricia.johnson@university.edu",
     "research": "Design Engineering, CAD",
-    "subjects": ["CAD Design", "Mechanical Design"],
+    "subjects": "CAD Design, Mechanical Design",
     "officeHours": "Fri 2 PM - 4 PM",
     "contact": "patricia.johnson@university.edu",
     "image": "/images/female3.png"
@@ -228,7 +228,7 @@
     "department": "ME",
     "email": "william.brown@university.edu",
     "research": "Particle Engineering, Geotechnical Engineering",
-    "subjects": ["Metal Analysis", "Geotechnical Engineering"],
+    "subjects": "Metal Analysis, Geotechnical Engineering",
     "officeHours": "Mon & Wed 10 AM - 12 PM",
     "contact": "william.brown@university.edu",
     "image": "/images/male5.png"
@@ -241,7 +241,7 @@
     "department": "CE",
     "email": "john.kenedy@university.edu",
     "research": "Sustainable Development, Water Resources",
-    "subjects": ["Environmental Engineering", "Water Resources"],
+    "subjects": "Environmental Engineering, Water Resources",
     "officeHours": "Tue & Thu 2 PM - 4 PM",
     "contact": "john.kenedy@university.edu",
     "image": "/images/male6.png"
@@ -254,7 +254,7 @@
     "department": "CE",
     "email": "ethan.davis@university.edu",
     "research": "Construction Management, Project Management",
-    "subjects": ["Construction Management", "Project Management"],
+    "subjects": "Construction Management, Project Management",
     "officeHours": "Mon & Wed 1 PM - 3 PM",
     "contact": "ethan.davis@university.edu",
     "image": "/images/male2.png"
@@ -267,7 +267,7 @@
     "department": "CE",
     "email": "micheal.hard@university.edu",
     "research": "Bridge Engineering, Structural Dynamics",
-    "subjects": ["Bridge Engineering", "Structural Dynamics"],
+    "subjects": "Bridge Engineering, Structural Dynamics",
     "officeHours": "Tue & Thu 9 AM - 11 AM",
     "contact": "micheal.hard@university.edu",
     "image": "/images/male1.png"
@@ -280,7 +280,7 @@
     "department": "CE",
     "email": "grace.lee@university.edu",
     "research": "Traffic Engineering, Transportation Planning",
-    "subjects": ["Traffic Engineering", "Transportation Planning"],
+    "subjects": "Traffic Engineering, Transportation Planning",
     "officeHours": "Fri 2 PM - 4 PM",
     "contact": "grace.lee@university.edu",
     "image": "/images/male3.png"
@@ -293,7 +293,7 @@
     "department": "CE",
     "email": "james.wilson@university.edu",
     "research": "Earthquake Engineering, Soil Mechanics",
-    "subjects": ["Soil Mechanics", "Earthquake Engineering"],
+    "subjects": "Soil Mechanics, Earthquake Engineering",
     "officeHours": "Mon & Wed 3 PM - 5 PM",
     "contact": "james.wilson@university.edu",
     "image": "/images/male4.png"
@@ -306,7 +306,7 @@
     "department": "CE",
     "email": "andrew.miller@university.edu",
     "research": "Structural Analysis, Materials Testing",
-    "subjects": ["Materials Testing", "Structural Design"],
+    "subjects": "Materials Testing, Structural Design",
     "officeHours": "Tue & Thu 1 PM - 3 PM",
     "contact": "andrew.miller@university.edu",
     "image": "/images/male5.png"

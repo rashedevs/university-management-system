@@ -3,6 +3,27 @@ import { NavLink } from "react-router-dom";
 import studentsData from "../data/students.json";
 import coursesData from "../data/courses.json";
 import book1 from "/images/book1.webp";
+import completedCourses from "../data/completedCourses.json";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Register the components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const StudentDashboard = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
@@ -38,9 +59,77 @@ const StudentDashboard = () => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedExamDate = examDate.toLocaleDateString(undefined, options);
 
+  //new
+  const calculateCGPA = () => {
+    const totalPoints = completedCourses.reduce((acc, course) => {
+      const grade = course.obtainedGrade;
+      let gradePoint = 0;
+      if (grade === "A") gradePoint = 4.0;
+      else if (grade === "B") gradePoint = 3.0;
+      else if (grade === "C") gradePoint = 2.0;
+      else if (grade === "D") gradePoint = 1.0;
+      return acc + gradePoint;
+    }, 0);
+
+    return (totalPoints / completedCourses.length).toFixed(2);
+  };
+  // Data for the CGPA chart
+  const chartData = {
+    labels: completedCourses.map((course) => course.courseName),
+    datasets: [
+      {
+        label: "Obtained Grade",
+        data: completedCourses.map((course) => {
+          const grade = course.obtainedGrade;
+          if (grade === "A") return 4.0;
+          if (grade === "B") return 3.0;
+          if (grade === "C") return 2.0;
+          if (grade === "D") return 1.0;
+          return 0;
+        }),
+        backgroundColor: completedCourses.map((course, index) => {
+          // Array of colors or use a color-generating logic
+          const colors = [
+            "rgba(255, 99, 132, 0.6)",
+            "rgba(54, 162, 235, 0.6)",
+            "rgba(255, 206, 86, 0.6)",
+            "rgba(75, 192, 192, 0.6)",
+            "rgba(153, 102, 255, 0.6)",
+            "rgba(255, 159, 64, 0.6)",
+          ];
+          return colors[index % colors.length]; // Cycle through colors
+        }),
+        borderColor: completedCourses.map((course, index) => {
+          const colors = [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ];
+          return colors[index % colors.length]; // Cycle through colors
+        }),
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const option = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 4,
+      },
+    },
+  };
+
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
+        {/* Event Marquee */}
         <div
           className=""
           style={{
@@ -58,7 +147,7 @@ const StudentDashboard = () => {
               color: "#ed0740",
             }}
           >
-            Upcoming Semester Final: Your exams will start in 25 days on{" "}
+            Upcoming Events: Semester final exams will start in 25 days on{" "}
             {formattedExamDate}. Prepare well!
           </div>
 
@@ -74,6 +163,7 @@ const StudentDashboard = () => {
         `}
           </style>
         </div>
+        {/* Welcome card */}
         <div className="w-full mx-auto overflow-hidden rounded-lg shadow-lg">
           <div className="bg-gradient-to-r from-green-400 to-blue-400 p-1">
             <div className="bg-white dark:bg-gray-800 p-6 sm:p-8">
@@ -83,7 +173,8 @@ const StudentDashboard = () => {
                     {currentDate}
                   </p>
                   <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white">
-                    Welcome back, {"Rashed"}!
+                    Welcome back,{" "}
+                    <span className="text-pink-600">{"John!"}</span>
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-300">
                     Stay updated in your student portal
@@ -141,6 +232,68 @@ const StudentDashboard = () => {
             </div>
           </div>
         </div>
+        {/* CGPA Chart */}
+        <div className="w-full mx-auto p-4 mt-8">
+          <h2 className="text-2xl font-bold my-2 text-gray-800">
+            Current CGPA:{" "}
+            <span className="text-pink-600">{calculateCGPA()}</span>{" "}
+            <span className="text-sm">(out of 4)</span>
+          </h2>
+          <div className="w-full h-full md:h-96">
+            <Bar data={chartData} options={option} />
+          </div>
+        </div>
+        {/* Completed Courses */}
+        <div className="w-full mx-auto p-4 mt-8">
+          <h2 className="text-2xl font-bold my-2 text-gray-800 mb-6">
+            Completed Courses
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {completedCourses.map((course, index) => (
+              <div
+                key={index}
+                className="relative group bg-white rounded-xl p-6 flex flex-col justify-between h-full shadow-xl hover:shadow-2xl transition-shadow duration-300"
+              >
+                {/* Course Information */}
+                <h3 className="text-gray-800 text-lg font-semibold">
+                  {course.courseName}
+                </h3>
+                <p className="text-gray-600">
+                  <span className="font-medium">Grade:</span>{" "}
+                  {course.obtainedGrade}
+                </p>
+
+                {/* Popover - appears on hover */}
+                <div
+                  data-popover
+                  id={`popover-course-${index}`}
+                  role="tooltip"
+                  className="absolute z-10 invisible group-hover:visible group-focus:visible opacity-0 group-hover:opacity-100 group-focus:opacity-100 inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-blue-900 border border-blue-900 rounded-lg shadow-lg"
+                >
+                  <div className="p-3">
+                    <h4 className="text-base mt-1 mb-3 font-semibold leading-none text-white">
+                      {course.courseName}
+                    </h4>
+                    <p className="mb-1 text-sm text-white">
+                      Semester: {course.semester}
+                    </p>
+                    <p className="mb-1 text-sm text-white">
+                      Professor: {course.instructor}
+                    </p>
+                    <p className="mb-1 text-sm text-white">
+                      Email: {course.email}
+                    </p>
+                    <p className="mb-4 text-sm text-white">
+                      Department: {course.department}
+                    </p>
+                    <div data-popper-arrow></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* Enrolled Courses */}
         <div>
           <div className="w-full mx-auto p-4">
             <div className="flex justify-between items-center mb-4">

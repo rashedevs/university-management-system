@@ -49,7 +49,7 @@ const Modal = ({ isOpen, onClose, faculty }) => {
               <strong>Education:</strong> {faculty?.education}
             </p>
             <p className="text-gray-500 dark:text-gray-400 mb-1">
-              <strong>Department:</strong> {faculty?.department}
+              <strong>Office Hours:</strong> {faculty?.officeHours}
             </p>
             <p className="text-gray-500 dark:text-gray-400 mb-1">
               <strong>Email:</strong> {faculty?.email}
@@ -58,15 +58,14 @@ const Modal = ({ isOpen, onClose, faculty }) => {
               <strong>Research:</strong> {faculty?.research}
             </p>
 
-            <div className="text-center">
+            {/* <div className="text-center">
               <button
                 onClick={onClose}
-                //   className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5"
                 className="px-4 mt-5 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:ring-1 focus:outline-none"
               >
                 Close
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
