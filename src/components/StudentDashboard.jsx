@@ -30,10 +30,50 @@ const StudentDashboard = () => {
     month: "long",
     day: "numeric",
   });
+  const currentDateNew = new Date();
+  const examDate = new Date(currentDateNew);
+  examDate.setDate(currentDateNew.getDate() + 25);
+
+  // Format the exam date
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedExamDate = examDate.toLocaleDateString(undefined, options);
 
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
+        <div
+          className=""
+          style={{
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            backgroundColor: "#f3f4f6",
+            padding: "10px",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-block",
+              animation: "marquee 20s linear infinite",
+              fontSize: "17px",
+              color: "#ed0740",
+            }}
+          >
+            Upcoming Semester Final: Your exams will start in 25 days on{" "}
+            {formattedExamDate}. Prepare well!
+          </div>
+
+          <style>
+            {`
+          @keyframes marquee {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+        `}
+          </style>
+        </div>
         <div className="w-full mx-auto overflow-hidden rounded-lg shadow-lg">
           <div className="bg-gradient-to-r from-green-400 to-blue-400 p-1">
             <div className="bg-white dark:bg-gray-800 p-6 sm:p-8">
@@ -107,7 +147,7 @@ const StudentDashboard = () => {
               <h2 className="text-2xl font-bold my-2 text-gray-800">
                 Enrolled Courses
               </h2>
-              <a href="#" className="text-purple-600 hover:underline">
+              <a href="#" className="text-green-500 hover:underline">
                 See all
               </a>
             </div>
@@ -117,19 +157,33 @@ const StudentDashboard = () => {
                 enrolledCourses.map((course) => (
                   <div
                     key={course.courseId}
-                    className="bg-white rounded-xl p-4 flex flex-col justify-between h-full"
+                    className="bg-white rounded-xl p-6 flex flex-col justify-between h-full shadow-xl"
                   >
-                    <div className="flex justify-start items-center mb-4">
-                      <img
-                        src={book1}
-                        alt="Course Icon"
-                        className="w-16 h-16"
-                      />
-                      <h3 className="text-purple-800 ms-2 font-semibold">
+                    <div className="flex justify-start items-center mb-2">
+                      <img src={book1} alt="Course Icon" className="w-8 h-8" />
+                      <h3 className="text-gray-800 text-lg ms-2 font-semibold">
                         {course.courseName}
                       </h3>
                     </div>
-                    <button className="bg-purple-500 max-w-24 text-white py-2 px-4 rounded-md hover:bg-purple-600 transition-colors">
+                    <h4 className="text-gray-800 text-sm">
+                      <span className="text-gray-700 text-sm font-semibold me-1">
+                        Schedule :
+                      </span>{" "}
+                      {course.schedule}
+                    </h4>
+                    <h4 className="text-gray-800 text-sm">
+                      <span className="text-gray-700 text-sm font-semibold me-1">
+                        Instructor :
+                      </span>{" "}
+                      {course.faculty}
+                    </h4>
+                    <h4 className="mb-4 text-gray-800 text-sm">
+                      <span className="text-gray-700 text-sm font-semibold me-1">
+                        Department :
+                      </span>{" "}
+                      {course.department}
+                    </h4>
+                    <button className="bg-green-500 max-w-24 text-white py-1 px-4 rounded-md hover:bg-green-600 transition-colors">
                       View
                     </button>
                   </div>
