@@ -12,7 +12,7 @@ const FacultyCard = ({
   onDetailsClick,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row my-3 text-center items-center justify-between bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full">
+    <div className="flex flex-col md:flex-row my-3 text-center items-center justify-between bg-white border border-gray-100 rounded-lg shadow-lg w-full">
       <img
         className="p-6 w-48 h-48 rounded-lg md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
         src={imageUrl}

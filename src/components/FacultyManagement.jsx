@@ -54,9 +54,9 @@ const FacultyManagement = () => {
   return (
     <div className="flex flex-col bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4 flex-grow overflow-y-auto">
-        <h2 className="text-3xl mt-3 mb-5 font-bold">Faculty Overview</h2>
+        <h2 className="text-3xl mt-2 mb-4 font-bold">Faculty Overview</h2>
 
-        <div className="py-4 mb-3 border-2 bg-green-500 rounded-lg text-center">
+        <div className="py-3 mb-3 border-2 bg-green-500 rounded-lg text-center">
           <h1 className="ms-2 p-2 text-3xl font-bold text-white dark:text-gray-400">
             {selectedOption?.value == "cse" &&
               "Department of Computer Science & Engineering"}

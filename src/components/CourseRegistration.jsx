@@ -3,6 +3,7 @@ import coursesData from "../data/courses.json";
 import { ToastContainer, toast } from "react-toastify";
 import Dropdown from "./reusable/Dropdown";
 import book1 from "/images/book1.webp";
+import "react-toastify/dist/ReactToastify.css";
 
 const CourseRegistration = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -11,6 +12,13 @@ const CourseRegistration = () => {
     value: "all",
   });
   const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
+  // State for registration number and error messages
+  const [registrationNumber, setRegistrationNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [errors, setErrors] = useState({ email: "", registrationNumber: "" });
 
   const dropdownOptions = [
     { label: "ALL", value: "all" },
@@ -21,18 +29,15 @@ const CourseRegistration = () => {
   ];
 
   const defaultDropdownOption = dropdownOptions[0];
-
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Load enrolled courses from localStorage when the component mounts
   useEffect(() => {
     const savedCourses =
       JSON.parse(localStorage.getItem("enrolledCourses")) || [];
     setEnrolledCourses(savedCourses);
   }, []);
 
-  // Filter courses based on search term and selected department
   const filteredCourses = coursesData.filter(
     (course) =>
       course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -40,23 +45,65 @@ const CourseRegistration = () => {
         course.department === selectedOption.label)
   );
 
-  // Calculate total pages
   const totalPages = Math.ceil(filteredCourses.length / itemsPerPage);
-
-  // Get current courses for the current page
   const currentCourses = filteredCourses.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
-  const handleEnroll = (courseId, courseName) => {
-    const updatedEnrolledCourses = [...enrolledCourses, courseId];
-    setEnrolledCourses(updatedEnrolledCourses);
-    localStorage.setItem(
-      "enrolledCourses",
-      JSON.stringify(updatedEnrolledCourses)
-    );
-    toast.success(`Enrolled in ${courseName} successfully!`);
+  const handleEnroll = (courseId, faculty, courseName) => {
+    setSelectedCourse({ courseId, faculty, courseName });
+    setIsModalOpen(true);
+  };
+
+  const validateForm = () => {
+    let formIsValid = true;
+    const newErrors = { email: "", registrationNumber: "" };
+
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      newErrors.email = "Email is required.";
+      formIsValid = false;
+    } else if (!emailPattern.test(email)) {
+      newErrors.email = "Invalid email format.";
+      formIsValid = false;
+    }
+
+    // Registration number validation
+    const registrationPattern = /^\d{5}$/;
+    if (!registrationNumber) {
+      newErrors.registrationNumber = "Registration number is required.";
+      formIsValid = false;
+    } else if (!registrationPattern.test(registrationNumber)) {
+      newErrors.registrationNumber =
+        "Registration number must be a 5-digit number.";
+      formIsValid = false;
+    }
+
+    setErrors(newErrors);
+    return formIsValid;
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (validateForm()) {
+      const updatedEnrolledCourses = [
+        ...enrolledCourses,
+        selectedCourse.courseId,
+      ];
+      setEnrolledCourses(updatedEnrolledCourses);
+      localStorage.setItem(
+        "enrolledCourses",
+        JSON.stringify(updatedEnrolledCourses)
+      );
+      setIsModalOpen(false);
+      toast.success(`Enrolled in ${selectedCourse.courseName} successfully!`);
+      // Reset form fields
+      setEmail("");
+      setRegistrationNumber("");
+      setErrors({ email: "", registrationNumber: "" });
+    }
   };
 
   const isEnrolled = (courseId) => enrolledCourses.includes(courseId);
@@ -64,7 +111,7 @@ const CourseRegistration = () => {
   return (
     <div className="bg-gray-100">
       <div className="container mx-auto p-4">
-        <h2 className="text-3xl mt-3 mb-5 font-bold">Enroll in Courses</h2>
+        <h2 className="text-3xl mt-2 mb-5 font-bold">Enroll in Courses</h2>
 
         <div className="flex items-center justify-between mb-4">
           <input
@@ -87,7 +134,7 @@ const CourseRegistration = () => {
           {currentCourses.length > 0 ? (
             currentCourses.map((course) => (
               <div
-                className="lg:h-66 md:h-72 h-72 bg-white flex flex-col justify-between max-w-sm p-6 border border-gray-200 rounded-lg shadow"
+                className="lg:h-64 md:h-66 h-68 bg-white flex flex-col justify-between max-w-sm p-6 border border-gray-100 rounded-lg shadow-lg"
                 key={course.courseId}
               >
                 <div>
@@ -127,7 +174,11 @@ const CourseRegistration = () => {
                       : "bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
                   }`}
                   onClick={() =>
-                    handleEnroll(course.courseId, course.courseName)
+                    handleEnroll(
+                      course.courseId,
+                      course.faculty,
+                      course.courseName
+                    )
                   }
                   disabled={isEnrolled(course.courseId)}
                 >
@@ -140,7 +191,6 @@ const CourseRegistration = () => {
           )}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center mt-5">
             <nav aria-label="Page navigation">
@@ -189,6 +239,115 @@ const CourseRegistration = () => {
         )}
 
         <ToastContainer />
+
+        {isModalOpen && (
+          <div className="fixed inset-0 p-5 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full relative">
+              {/* Close Button */}
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-3 right-5 text-2xl text-gray-500 hover:text-gray-800"
+              >
+                &times;
+              </button>
+
+              <h2 className="text-xl font-bold mb-4">Complete Enrollment</h2>
+
+              <form onSubmit={handleFormSubmit}>
+                <div className="mb-4">
+                  <label
+                    htmlFor="courseName"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Course Name
+                  </label>
+                  <input
+                    type="text"
+                    id="courseName"
+                    value={selectedCourse.courseName}
+                    readOnly
+                    className="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label
+                    htmlFor="faculty"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Faculty
+                  </label>
+                  <input
+                    type="text"
+                    id="faculty"
+                    value={selectedCourse.faculty}
+                    readOnly
+                    className="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5"
+                  />
+                </div>
+
+                <div className="mb-5">
+                  <label
+                    htmlFor="registrationNumber"
+                    className="block text-sm font-medium text-gray-900"
+                  >
+                    Registration Number <span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="registrationNumber"
+                    value={registrationNumber}
+                    onChange={(e) => setRegistrationNumber(e.target.value)}
+                    className={`bg-gray-50 border ${
+                      errors.registrationNumber
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } text-gray-900 text-sm rounded-lg block w-full p-2.5`}
+                    placeholder="5-digit registration number"
+                    required
+                  />
+                  {errors.registrationNumber && (
+                    <p className="text-red-500 text-xs font-medium mt-1">
+                      {errors.registrationNumber}
+                    </p>
+                  )}
+                </div>
+
+                <div className="mb-5">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-900"
+                  >
+                    Your email <span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`bg-gray-50 border ${
+                      errors.email ? "border-red-500" : "border-gray-300"
+                    } text-gray-900 text-sm rounded-lg block w-full p-2.5`}
+                    placeholder="your email"
+                    required
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-xs font-medium mt-1">
+                      {errors.email}
+                    </p>
+                  )}
+                </div>
+
+                <button
+                  type="submit"
+                  className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg"
+                >
+                  Confirm
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
