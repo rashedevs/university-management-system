@@ -3,6 +3,8 @@ import facultyData from "../data/faculty.json";
 import Dropdown from "./reusable/Dropdown";
 import FacultyCard from "./reusable/FacultyCard";
 import Modal from "./reusable/Modal";
+import finding from "../assets/Animation - 1729278428371.json";
+import Lottie from "lottie-react";
 
 const FacultyManagement = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -99,57 +101,72 @@ const FacultyManagement = () => {
               />
             ))
           ) : (
-            <h4 className="text-center text-red-600 mt-5">
-              No Faculty Data Found
-            </h4>
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col justify-center items-center my-5">
+              <div className="">
+                <div className="mx-auto h-36 w-36 md:w-54 lg:w-72">
+                  <Lottie animationData={finding}></Lottie>
+                </div>
+              </div>
+              <div className="lg:mt-28 mx-auto text-center">
+                <h1 className=" text-pink-600 font-medium text-lg mb-3">
+                  No faculty data found.
+                </h1>
+              </div>
+            </div>
           )}
         </div>
 
         {/* Pagination */}
-        <div className="flex justify-center mt-5">
-          <nav aria-label="Page navigation">
-            <ul className="inline-flex -space-x-px text-sm">
-              <li>
-                <button
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.max(prev - 1, 1))
-                  }
-                  disabled={currentPage === 1}
-                  className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-white bg-green-500 border border-e-0 border-green-300 rounded-s-lg hover:bg-green-600 disabled:opacity-50"
-                >
-                  Prev
-                </button>
-              </li>
+        {currentFaculty.length ? (
+          <>
+            <div className="flex justify-center mt-5">
+              <nav aria-label="Page navigation">
+                <ul className="inline-flex -space-x-px text-sm">
+                  <li>
+                    <button
+                      onClick={() =>
+                        setCurrentPage((prev) => Math.max(prev - 1, 1))
+                      }
+                      disabled={currentPage === 1}
+                      className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-white bg-green-500 border border-e-0 border-green-300 rounded-s-lg hover:bg-green-600 disabled:opacity-50"
+                    >
+                      Prev
+                    </button>
+                  </li>
 
-              {Array.from({ length: totalPages }, (_, index) => (
-                <li key={index}>
-                  <button
-                    onClick={() => setCurrentPage(index + 1)}
-                    className={`flex items-center justify-center px-3 h-8 leading-tight border border-gray-300 rounded-md ${
-                      currentPage === index + 1
-                        ? "text-white bg-green-500 hover:bg-green-600"
-                        : "text-gray-500 bg-white hover:bg-gray-100"
-                    }`}
-                  >
-                    {index + 1}
-                  </button>
-                </li>
-              ))}
+                  {Array.from({ length: totalPages }, (_, index) => (
+                    <li key={index}>
+                      <button
+                        onClick={() => setCurrentPage(index + 1)}
+                        className={`flex items-center justify-center px-3 h-8 leading-tight border border-gray-300 rounded-md ${
+                          currentPage === index + 1
+                            ? "text-white bg-green-500 hover:bg-green-600"
+                            : "text-gray-500 bg-white hover:bg-gray-100"
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    </li>
+                  ))}
 
-              <li>
-                <button
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-                  }
-                  disabled={currentPage === totalPages}
-                  className="flex items-center justify-center px-3 h-8 leading-tight text-white bg-green-500 border border-green-300 rounded-e-lg hover:bg-green-600 disabled:opacity-50"
-                >
-                  Next
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </div>
+                  <li>
+                    <button
+                      onClick={() =>
+                        setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                      }
+                      disabled={currentPage === totalPages}
+                      className="flex items-center justify-center px-3 h-8 leading-tight text-white bg-green-500 border border-green-300 rounded-e-lg hover:bg-green-600 disabled:opacity-50"
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
 
         {/* Render Modal */}
         {isModalOpen && selectedFaculty && (

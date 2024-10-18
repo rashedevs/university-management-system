@@ -32,7 +32,9 @@ const Navbar = () => {
               alt="University Logo"
               className="h-8 me-2" // Adjust the height as needed
             />
-            <h1 className="text-white text-xl font-bold">Management System</h1>
+            <h1 className="text-white text-xl font-bold cursor-pointer">
+              Management System
+            </h1>
           </div>
 
           {/* Hamburger menu for small screens */}

@@ -5,6 +5,10 @@ import coursesData from "../data/courses.json";
 import book1 from "/images/book1.webp";
 import completedCourses from "../data/completedCourses.json";
 import { Bar } from "react-chartjs-2";
+import { ToastContainer, toast } from "react-toastify";
+import CourseModal from "./reusable/CourseModal";
+import finding from "../assets/Animation - 1729278428371.json";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -14,6 +18,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import Lottie from "lottie-react";
 
 // Register the components
 ChartJS.register(
@@ -26,13 +31,20 @@ ChartJS.register(
 );
 
 const StudentDashboard = () => {
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
-  const [student, setStudent] = useState(null);
   const image = studentsData[0].image;
 
-  useEffect(() => {
-    setStudent(studentsData[0]); // Simulating fetching first student
-  }, []);
+  const handleDetailsClick = (course) => {
+    setSelectedCourse(course);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedCourse(null);
+  };
 
   useEffect(() => {
     const storedCourseIds = JSON.parse(localStorage.getItem("enrolledCourses"));
@@ -43,8 +55,6 @@ const StudentDashboard = () => {
       setEnrolledCourses(filteredCourses);
     }
   }, []);
-
-  if (!student) return <p>Loading...</p>;
 
   const currentDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
@@ -59,7 +69,6 @@ const StudentDashboard = () => {
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedExamDate = examDate.toLocaleDateString(undefined, options);
 
-  //new
   const calculateCGPA = () => {
     const totalPoints = completedCourses.reduce((acc, course) => {
       const grade = course.obtainedGrade;
@@ -125,6 +134,8 @@ const StudentDashboard = () => {
       },
     },
   };
+
+  const notificationCount = 3;
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -196,22 +207,63 @@ const StudentDashboard = () => {
                     <path d="M6 12v5c3 3 9 3 12 0v-5" />
                   </svg>
 
-                  {/* Rocket Icon */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-8 h-8 sm:w-10 sm:h-10 text-blue-500 dark:text-blue-400"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
-                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-                  </svg>
+                  {/* Notification Icon with Count Badge */}
+                  <div className="relative">
+                    <svg
+                      onClick={() =>
+                        toast.info(`Notification feature is coming!`)
+                      }
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-6 h-6 sm:w-8 sm:h-8 text-slate-700"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      stroke="none"
+                      style={{
+                        animation: "ring 1s ease-in-out infinite",
+                        transformOrigin: "top center", // Ensures the icon rotates around its top center
+                      }}
+                    >
+                      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+
+                    {/* Notification count badge */}
+                    {notificationCount > 0 && (
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: "-6px",
+                          right: "-6px",
+                          backgroundColor: "red",
+                          color: "white",
+                          borderRadius: "50%",
+                          padding: "2px 6px",
+                          fontSize: "10px",
+                          fontWeight: "bold",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          minWidth: "18px", // Ensures the circle stays rounded
+                        }}
+                      >
+                        {notificationCount}
+                      </span>
+                    )}
+                  </div>
+
+                  <style>
+                    {`
+      @keyframes ring {
+        0% { transform: rotate(0); }
+        10% { transform: rotate(15deg); }
+        20% { transform: rotate(-10deg); }
+        30% { transform: rotate(10deg); }
+        40% { transform: rotate(-5deg); }
+        50% { transform: rotate(5deg); }
+        60%, 100% { transform: rotate(0); }
+      }
+    `}
+                  </style>
 
                   {/* Avatar */}
                   <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-4 border-white dark:border-gray-700 overflow-hidden shadow-lg">
@@ -233,7 +285,7 @@ const StudentDashboard = () => {
           </div>
         </div>
         {/* CGPA Chart */}
-        <div className="w-full mx-auto p-4 mt-8">
+        <div className="w-full mx-auto p-4 mt-6">
           <h2 className="text-2xl font-bold my-2 text-gray-800">
             Current CGPA:{" "}
             <span className="text-pink-600">{calculateCGPA()}</span>{" "}
@@ -244,8 +296,8 @@ const StudentDashboard = () => {
           </div>
         </div>
         {/* Completed Courses */}
-        <div className="w-full mx-auto p-4 mt-8">
-          <h2 className="text-2xl font-bold my-2 text-gray-800 mb-6">
+        <div className="w-full mx-auto p-4 mt-4">
+          <h2 className="text-2xl font-bold my-2 text-gray-800 mb-8">
             Completed Courses
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -294,73 +346,80 @@ const StudentDashboard = () => {
           </div>
         </div>
         {/* Enrolled Courses */}
-        <div>
-          <div className="w-full mx-auto p-4">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold my-2 text-gray-800">
-                Enrolled Courses
-              </h2>
-              <a href="#" className="text-green-500 hover:underline">
-                See all
-              </a>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {enrolledCourses?.length ? (
-                enrolledCourses.map((course) => (
-                  <div
-                    key={course.courseId}
-                    className="bg-white rounded-xl p-6 flex flex-col justify-between h-full shadow-xl"
+        <div className="w-full mx-auto p-4">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold my-2 text-gray-800">
+              Enrolled Courses
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {enrolledCourses?.length ? (
+              enrolledCourses.map((course) => (
+                <div
+                  key={course.courseId}
+                  className="bg-white rounded-xl p-6 flex flex-col justify-between shadow-xl mb-6"
+                >
+                  <div className="flex justify-start items-center mb-2">
+                    <img src={book1} alt="Course Icon" className="w-8 h-8" />
+                    <h3 className="text-gray-800 text-lg ms-2 font-semibold">
+                      {course.courseName}
+                    </h3>
+                  </div>
+                  <h4 className="text-gray-800 text-sm">
+                    <span className="text-gray-700 text-sm font-semibold me-1">
+                      Schedule :
+                    </span>{" "}
+                    {course.schedule}
+                  </h4>
+                  <h4 className="text-gray-800 text-sm">
+                    <span className="text-gray-700 text-sm font-semibold me-1">
+                      Instructor :
+                    </span>{" "}
+                    {course.faculty}
+                  </h4>
+                  <h4 className="mb-4 text-gray-800 text-sm">
+                    <span className="text-gray-700 text-sm font-semibold me-1">
+                      Department :
+                    </span>{" "}
+                    {course.department}
+                  </h4>
+                  <button
+                    onClick={() => handleDetailsClick(course)}
+                    className="bg-green-500 max-w-24 mx-auto md:mx-0 text-white py-1 px-4 rounded-md hover:bg-green-600 transition-colors"
                   >
-                    <div className="flex justify-start items-center mb-2">
-                      <img src={book1} alt="Course Icon" className="w-8 h-8" />
-                      <h3 className="text-gray-800 text-lg ms-2 font-semibold">
-                        {course.courseName}
-                      </h3>
-                    </div>
-                    <h4 className="text-gray-800 text-sm">
-                      <span className="text-gray-700 text-sm font-semibold me-1">
-                        Schedule :
-                      </span>{" "}
-                      {course.schedule}
-                    </h4>
-                    <h4 className="text-gray-800 text-sm">
-                      <span className="text-gray-700 text-sm font-semibold me-1">
-                        Instructor :
-                      </span>{" "}
-                      {course.faculty}
-                    </h4>
-                    <h4 className="mb-4 text-gray-800 text-sm">
-                      <span className="text-gray-700 text-sm font-semibold me-1">
-                        Department :
-                      </span>{" "}
-                      {course.department}
-                    </h4>
-                    <button className="bg-green-500 max-w-24 text-white py-1 px-4 rounded-md hover:bg-green-600 transition-colors">
-                      View
-                    </button>
+                    Details
+                  </button>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col justify-center items-center my-5">
+                <div className="">
+                  <div className="mx-auto h-36 w-36 md:w-54 lg:w-72">
+                    <Lottie animationData={finding}></Lottie>
                   </div>
-                ))
-              ) : (
-                <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col justify-center items-center my-5">
-                  <div>
-                    <h1 className="text-red-600 font-medium text-lg">
-                      No enrolled courses found.
-                    </h1>
-                  </div>
-
+                </div>
+                <div className="lg:mt-28 mx-auto text-center">
+                  <h1 className=" text-pink-600 font-medium text-lg mb-3">
+                    No enrolled courses found.
+                  </h1>
                   <NavLink
                     to="/register"
-                    className="mt-3 cursor-pointer font-medium text-sm text-white py-1 px-3 bg-green-500 hover:bg-green-600 rounded"
+                    className="mt-3 cursor-pointer font-medium text-sm text-white py-2 px-3 bg-green-500 hover:bg-green-600 rounded"
                   >
-                    Enroll Now
+                    Browse Courses
                   </NavLink>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
+      <CourseModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        course={selectedCourse}
+      />
+      <ToastContainer />
     </div>
   );
 };

@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import Dropdown from "./reusable/Dropdown";
 import book1 from "/images/book1.webp";
 import "react-toastify/dist/ReactToastify.css";
+import finding from "../assets/Animation - 1729278428371.json";
+import Lottie from "lottie-react";
 
 const CourseRegistration = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -109,7 +111,7 @@ const CourseRegistration = () => {
   const isEnrolled = (courseId) => enrolledCourses.includes(courseId);
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 min-h-screen">
       <div className="container mx-auto p-4">
         <h2 className="text-3xl mt-2 mb-5 font-bold">Enroll in Courses</h2>
 
@@ -187,7 +189,18 @@ const CourseRegistration = () => {
               </div>
             ))
           ) : (
-            <h3 className="text-red-500">No Courses Found</h3>
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col justify-center items-center my-5">
+              <div className="">
+                <div className="mx-auto h-36 w-36 md:w-54 lg:w-72">
+                  <Lottie animationData={finding}></Lottie>
+                </div>
+              </div>
+              <div className="lg:mt-28 mx-auto text-center">
+                <h1 className=" text-pink-600 font-medium text-lg mb-3">
+                  No course data found.
+                </h1>
+              </div>
+            </div>
           )}
         </div>
 
@@ -338,12 +351,14 @@ const CourseRegistration = () => {
                   )}
                 </div>
 
-                <button
-                  type="submit"
-                  className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg"
-                >
-                  Confirm
-                </button>
+                <div className="flex justify-center w-full">
+                  <button
+                    type="submit"
+                    className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg"
+                  >
+                    Confirm
+                  </button>
+                </div>
               </form>
             </div>
           </div>
