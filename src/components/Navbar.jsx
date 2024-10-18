@@ -5,33 +5,27 @@ import logo from "../../src/assets/images/logo1.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Toggle menu visibility
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Close menu after selecting an option
   const closeMenu = () => {
     setIsOpen(false);
   };
 
   return (
     <>
-      {/* Navbar */}
       <nav className="bg-green-600 p-4">
         <div className="container mx-auto flex justify-between items-center">
-          {/* Website title */}
-          {/* <h1 className="text-white text-xl font-bold">
-            University Management System
-          </h1> */}
-
           {/* Logo */}
           <div className="flex justify-between items-center">
-            <img
-              src={logo} // Update this path to your logo
-              alt="University Logo"
-              className="h-8 me-2" // Adjust the height as needed
-            />
+            <NavLink to="/" onClick={closeMenu}>
+              <img
+                src={logo}
+                alt="University Logo"
+                className="h-8 me-2 cursor-pointer"
+              />
+            </NavLink>
             <h1 className="text-white text-xl font-bold cursor-pointer">
               Management System
             </h1>

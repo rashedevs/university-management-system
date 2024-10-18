@@ -35,7 +35,6 @@ const FacultyManagement = () => {
       faculty.department == selectedOption.label
   );
 
-  // Calculate total pages
   const totalPages = Math.ceil(filteredFaculty.length / itemsPerPage);
 
   // Get current faculty items for the page
@@ -45,13 +44,13 @@ const FacultyManagement = () => {
   );
 
   const handleDetailsClick = (faculty) => {
-    setSelectedFaculty(faculty); // Pass the selected faculty to modal
-    setIsModalOpen(true); // Open the modal
+    setSelectedFaculty(faculty);
+    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
-    setSelectedFaculty(null); // Reset selected faculty
+    setIsModalOpen(false);
+    setSelectedFaculty(null);
   };
   return (
     <div className="flex flex-col bg-gray-100 min-h-screen">
